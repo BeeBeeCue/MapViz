@@ -1,0 +1,358 @@
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+
+            #mapCanvas {
+                position: absolute;
+                border: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                z-index: -1;
+            }
+
+            #copyrightNotice {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: #f0fef1;
+                z-index: 100;
+                padding: 2px 5px;
+                font-family: sans-serif;
+                font-size: 0.8em;
+                font-weight: normal;
+            }
+
+            :root {
+                /* COLOURS */
+                /* Color1: background color. */
+                --color1-hue: 218;
+                --color1-saturation: 17%;
+
+                /* Graceful gradients. */
+                --gradient: linear-gradient(to bottom right, #e7e1a0, #85e0ce);
+
+                /* Luminosity shades */
+                --dark: 18%;
+                /* MapControlsUI background's luminosity. */
+                --soft: 45%;
+                --light: 65%;
+                --bright: 85%;
+                /* MapControlsUI text's luminosity. */
+
+                --intermediate: 55%;
+                /* For the title, if colour2 is used. */
+
+                /* LAYOUT */
+                --headers-height: 65px;
+                --margin: 15px;
+                --nav-width: 310px;
+            }
+
+            html {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                height: 100%;
+                font-size: 17px;
+                line-height: 18px;
+                font-family: 'Fira Sans', sans-serif;
+            }
+
+            a {
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+            }
+
+            a:visited {
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--bright))
+            }
+
+            #navPanel {
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--dark));
+                position: fixed;
+                z-index: 1;
+                left: 0px;
+                width: var(--nav-width);
+                height: 100%;
+                max-height: 100%;
+                transition: all 250ms ease;
+            }
+
+            #navPanel {
+                left: calc(var(--nav-width) * -1);
+            }
+
+            #navPanel.collapsed {
+                left: 0px;
+            }
+
+            #titleBar {
+                height: var(--headers-height);
+            }
+
+            #github path {
+                fill: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+            }
+
+            #github:hover path {
+                fill: hsl(var(--color1-hue), var(--color1-saturation), var(--light));
+            }
+
+            #documentation path {
+                fill: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+                stroke: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+            }
+
+            #documentation:hover path {
+                fill: hsl(var(--color1-hue), var(--color1-saturation), var(--light));
+                stroke: hsl(var(--color1-hue), var(--color1-saturation), var(--light));
+            }
+
+            #navPanel h1 {
+                margin: 0;
+                font-size: 25px;
+                color: hsla(var(--color2-hue), var(--color2-saturation), var(--intermediate), 1);
+                position: absolute;
+                top: 24px;
+                left: var(--margin);
+                padding: 5px 0;
+                margin-top: -5px;
+                background: var(--gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            #documentation,
+            #github,
+            #closeButton {
+                position: absolute;
+                top: 20px;
+                height: 20px
+            }
+
+            #closeButton {
+                right: 15px;
+                outline: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+                width: 25px;
+                height: 25px
+            }
+
+            #closeButton span:nth-child(1) {
+                left: 0;
+                margin-top: -2px;
+                transform: rotateZ(45deg);
+            }
+
+            #closeButton span:nth-child(2) {
+                left: 0;
+                margin-top: -2px;
+                transform: rotateZ(-45deg);
+            }
+
+            #documentation {
+                right: 50px;
+            }
+
+            #github {
+                right: 85px;
+            }
+
+            #exampleFrame {
+                position: absolute;
+                border: 0px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+            }
+
+            /*
+            * Example list
+            */
+            #exampleList {
+                padding: calc(var(--margin) + 19px) 0;
+                padding-bottom: calc(var(--margin) + 19px);
+                overflow: auto;
+                position: absolute;
+                top: calc(2 * var(--headers-height));
+                bottom: 0;
+                width: 100%;
+                height: calc(100% - 3 * var(--headers-height));
+            }
+
+            #exampleList div {
+                width: 100%;
+            }
+
+            #exampleList div h2 {
+                margin: var(--margin);
+                margin-bottom: calc(var(--headers-height)/3 - 9px);
+                margin-top: calc(2 * var(--headers-height)/3 - 9px);
+                font-size: 16px;
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+                text-transform: uppercase;
+                letter-spacing: 3px;
+            }
+
+            #exampleList div:first-of-type h2 {
+                margin-top: 0;
+            }
+
+            #exampleList .link {
+                text-decoration: none;
+                cursor: pointer;
+                display: block;
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+                padding: 3px var(--margin);
+            }
+
+            #exampleList .selected {
+                font-weight: bold;
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--soft));
+            }
+
+            #exampleList .link:hover {
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--soft));
+            }
+
+            #exampleList .filtered {
+                display: none !important;
+            }
+
+            /*
+            * View Source button
+            */
+            #viewSource {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+                border-radius: 50%;
+                font-weight: bold;
+                border: none;
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--dark));
+                box-shadow: 0 0 10px #333;
+                cursor: pointer;
+                transition: all 0.1s;
+                padding: 0 0 1px 1px;
+                user-select: none;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                margin: var(--margin);
+                background: var(--gradient);
+                text-decoration: none;
+            }
+
+            #viewSource p {
+                font-size: 15px;
+                font-weight: bold;
+                margin: 0;
+                text-transform: uppercase;
+            }
+
+            /*
+            * Filter input block
+            */
+
+            .filterBlock {
+                position: relative;
+                margin: 0px 0 15px 0;
+            }
+
+            .filterBlock p {
+                margin: 0;
+            }
+
+            #filterInput {
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+                width: 100%;
+                box-sizing: border-box;
+                padding: calc(var(--margin) + 7px) 50px calc(var(--margin) + 7px) var(--margin);
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--dark));
+                font-family: inherit;
+                font-size: 17px;
+                outline: none;
+                border: none;
+            }
+
+            #filterInput:focus+#magnifier-placeholder {
+                display: none;
+            }
+
+            #magnifier-placeholder {
+                position: absolute;
+                top: 22px;
+                left: calc(var(--margin) + 2px);
+                pointer-events: none;
+                font-size: 25px;
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--dark));
+            }
+
+            #clearFilterButton {
+                text-decoration: none;
+                position: absolute;
+                right: var(--margin);
+                top: 50%;
+                padding: 0;
+                margin-top: -8px;
+                height: 16px;
+                font-size: 30px;
+                color: hsl(var(--color1-hue), var(--color1-saturation), var(--dark));
+                text-align: center;
+                line-height: 0;
+                background: none;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+
+            #clearFilterButton:hover {
+                opacity: 1;
+            }
+
+            /*
+            * Mobile / Responsive support
+            */
+
+            #hamburgerMenu {
+                position: absolute;
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--dark));
+                width: 50px;
+                height: 50px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                z-index: 1
+            }
+
+            #hamburgerMenu span,
+            #closeButton span {
+                height: 2px;
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--bright));
+                width: 26px;
+                position: absolute;
+            }
+
+            #closeButton span {
+                background: hsl(var(--color1-hue), var(--color1-saturation), var(--intermediate));
+            }
+
+            #hamburgerMenu span {
+                left: 11px;
+                top: 14px;
+            }
+
+            #hamburgerMenu span:nth-child(1) {
+                top: 23px;
+            }
+
+            #hamburgerMenu span:nth-child(2) {
+                top: 32px;
+            }
