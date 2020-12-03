@@ -10,8 +10,8 @@ import { CopyrightElementHandler, MapView, PickResult } from "@here/harp-mapview
 import { GeoJsonDataProvider, VectorTileDataSource } from "@here/harp-vectortile-datasource";
 import { apikey } from "./resources/scripts/config";
 //import * as geojson from "../resources/geoman.json";
-import * as pointjson from "../harp.gl-example/resources/json/nokia_4g_towers_points.json";
-import * as geojson from "../harp.gl-example/resources/json/nokiaPoly.json";
+import * as pointjson from "../MapViz/resources/json/nokia_4g_towers_points.json";
+import * as geojson from "../MapViz/resources/json/nokiaPoly.json";
 //import logo from "../harp.gl-example/resources/icons/cellTower.svg";
 import Logo from "../harp.gl-example/resources/icons/cellTower.svg";
 
