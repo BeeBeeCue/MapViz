@@ -61419,14 +61419,14 @@ const pointjson = __importStar(__webpack_require__(/*! ./resources/json/nokia_4g
 const geojson = __importStar(__webpack_require__(/*! ./resources/json/nokiaPoly.json */ "./resources/json/nokiaPoly.json"));
 var GeoJsonCustomShaderExample;
 (function (GeoJsonCustomShaderExample) {
-    const imageString = "MapViz\harp.gl-example\resources\icons\cellTower.svg";
+    const imageString = "./resources/icons/CellTower.svg";
     // Get the bounding box for polygon geoJson
     const getGeoBox = () => {
         for (var i = 0; i < geojson.features.length; i++) {
             const ring2 = geojson.features[i].geometry.coordinates[0];
-            console.log(ring2);
+            //console.log(ring2);
             const geoBox = new harp_geoutils_1.GeoBox(harp_geoutils_1.GeoCoordinates.fromGeoPoint(ring2[0]), harp_geoutils_1.GeoCoordinates.fromGeoPoint(ring2[0]));
-            console.log(geoBox);
+            //console.log(geoBox);
             ring2.forEach(geoPoint => geoBox.growToContain(harp_geoutils_1.GeoCoordinates.fromGeoPoint(geoPoint)));
             const { west, south, east, north } = geoBox;
             const properties = geojson.features[i].properties;
@@ -61486,10 +61486,11 @@ var GeoJsonCustomShaderExample;
                                 size: 16,
                                 text: ["get", "id"],
                                 imageTexture: "custom-icon",
-                                iconScale: 1.0,
+                                iconScale: 0.8,
                                 screenHeight: 32,
                                 distanceScale: 1,
-                                iconYOffset: 20
+                                iconYOffset: 25,
+                                color: "#ffffff"
                             }
                         ]
                     },
@@ -61520,6 +61521,76 @@ var GeoJsonCustomShaderExample;
             this.addPoints();
             adjustSize();
             window.addEventListener("resize", adjustSize);
+            /*
+                ////////////
+                MOUSE EVENTS
+                ////////////
+            */
+            canvas.addEventListener("mousedown", event => {
+                lastCanvasPosition = getCanvasPosition(event, canvas);
+            });
+            canvas.addEventListener("touchstart", event => {
+                if (event.touches.length !== 1) {
+                    return;
+                }
+                lastCanvasPosition = getCanvasPosition(event.touches[0], canvas);
+            });
+            canvas.addEventListener("mouseup", event => {
+                const canvasPos = getCanvasPosition(event, canvas);
+                if (isPick(canvasPos)) {
+                    handlePick(this.mapView, canvasPos.x, canvasPos.y);
+                }
+            });
+            canvas.addEventListener("touchend", event => {
+                if (event.changedTouches.length !== 1) {
+                    return;
+                }
+                const canvasPos = getCanvasPosition(event.changedTouches[0], canvas);
+                if (isPick(canvasPos)) {
+                    handlePick(this.mapView, canvasPos.x, canvasPos.y);
+                }
+            });
+            let lastCanvasPosition;
+            function getCanvasPosition(event, canvas) {
+                const { left, top } = canvas.getBoundingClientRect();
+                return { x: event.clientX - Math.floor(left), y: event.clientY - Math.floor(top) };
+            }
+            // Trigger picking event only if there's (almost) no dragging.
+            function isPick(eventPosition) {
+                const MAX_MOVE = 5;
+                return (lastCanvasPosition &&
+                    Math.abs(lastCanvasPosition.x - eventPosition.x) <= MAX_MOVE &&
+                    Math.abs(lastCanvasPosition.y - eventPosition.y) <= MAX_MOVE);
+            }
+            // snippet:datasource_object_picking_2.ts
+            const element = document.getElementById("mouse-picked-result");
+            let current;
+            const handlePick = (mapViewUsed, x, y) => {
+                var _a;
+                let usableIntersections = mapViewUsed
+                    .intersectMapObjects(x, y)
+                    .filter(item => item.userData !== undefined);
+                const pickResults = this.mapView.intersectMapObjects(x, y);
+                console.log(pickResults);
+                if (pickResults.length > 1) {
+                    console.log("Results are " + pickResults.length);
+                }
+                if (usableIntersections.length > 1) {
+                    usableIntersections = usableIntersections.filter(item => item !== current);
+                    console.log(usableIntersections.length);
+                }
+                if (usableIntersections.length === 0) {
+                    // Hide helper box
+                    //element.style.visibility = "hidden";
+                    console.log("not Usable");
+                    return;
+                }
+                // Get userData from the first result;
+                current = usableIntersections[0];
+                if (((_a = current.userData) === null || _a === void 0 ? void 0 : _a.name) !== undefined) {
+                    mapViewUsed.setDynamicProperty("selection", [current.userData.name]);
+                }
+            };
         }
         start() { }
         // Add the API key
@@ -62837,7 +62908,6 @@ module.exports = JSON.parse("{\"type\":\"FeatureCollection\",\"features\":[{\"ty
 /*!       export coordinates [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         export 0 [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         export 1 [provided] [no usage info] [missing usage info prevents renaming] */
-/*!         export 2 [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         other exports [not provided] [no usage info] */
 /*!       export type [provided] [no usage info] [missing usage info prevents renaming] */
 /*!       other exports [not provided] [no usage info] */
@@ -62854,7 +62924,6 @@ module.exports = JSON.parse("{\"type\":\"FeatureCollection\",\"features\":[{\"ty
 /*!       export coordinates [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         export 0 [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         export 1 [provided] [no usage info] [missing usage info prevents renaming] */
-/*!         export 2 [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         other exports [not provided] [no usage info] */
 /*!       export type [provided] [no usage info] [missing usage info prevents renaming] */
 /*!       other exports [not provided] [no usage info] */
@@ -63031,7 +63100,6 @@ module.exports = JSON.parse("{\"type\":\"FeatureCollection\",\"features\":[{\"ty
 /*!       export coordinates [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         export 0 [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         export 1 [provided] [no usage info] [missing usage info prevents renaming] */
-/*!         export 2 [provided] [no usage info] [missing usage info prevents renaming] */
 /*!         other exports [not provided] [no usage info] */
 /*!       export type [provided] [no usage info] [missing usage info prevents renaming] */
 /*!       other exports [not provided] [no usage info] */
@@ -63452,7 +63520,7 @@ module.exports = JSON.parse("{\"type\":\"FeatureCollection\",\"features\":[{\"ty
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse("{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{\"id\":\"39\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.84180450439453,60.185616902570956,69]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"37\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.83355537056923,60.18947036691664,69]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"114\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.82295259833336,60.184251296155914,69]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1470\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.79728788137436,60.17434494882144]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"742\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.77733224630356,60.17517670605208]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"732\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.7717747092247,60.170009064888134]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1450\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.763033390045166,60.17338309904384]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"741\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.755043089389797,60.17655803018598]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"64\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.748514592647552,60.191252095374004]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"731\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.74334865808487,60.19561183870346]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"752\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.750896394252777,60.20959377381747]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"880\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75053697824478,60.20959910421023]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1108\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.750461876392365,60.20979766072243]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"41\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.755874574184418,60.20748353654532]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1109\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.760875552892685,60.21088770123642]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"765\",\"Bands\":[40]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.76441204547882,60.21185245015099]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"28\",\"Bands\":[28]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.761654734611508,60.215059636541]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"755\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75740075111389,60.21638399176534]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"7\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75846827030182,60.22086828237305]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"763\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.760254621505734,60.22131321418651]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"4010\",\"Bands\":[1,7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75917100906372,60.22165956411312]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"47\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.752342104911804,60.221445094013006]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"57\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.753144085407254,60.22135850630794]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"777\",\"Bands\":[28]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.752661287784573,60.22139980201119]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"30\",\"Bands\":[42]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75268542766571,60.22124527588704]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1105\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75236892700195,60.22114936275398]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1104\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.757009148597717,60.22472593347183]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"733\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.762024879455566,60.225682283654024]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"734\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.784587621688843,60.22320344100883]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"36\",\"Bands\":[1,7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.81131851673126,60.22430502399244]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"852\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.807858467102047,60.217489800725495]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"768\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.812761545181274,60.2174631551649]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"770\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813212156295776,60.2150742926762]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"38\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813963174819946,60.21095566099787]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"52\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813984632492065,60.21068382110713]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"75\",\"Bands\":[40]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.81358766555786,60.21047594202344]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"771\",\"Bands\":[40]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813501834869385,60.210358676318094]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"855\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.679713249206543,60.217276635634605]}}]}");
+module.exports = JSON.parse("{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{\"id\":\"39\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.84180450439453,60.185616902570956]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"37\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.83355537056923,60.18947036691664]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"114\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.82295259833336,60.184251296155914]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1470\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.79728788137436,60.17434494882144]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"742\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.77733224630356,60.17517670605208]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"732\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.7717747092247,60.170009064888134]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1450\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.763033390045166,60.17338309904384]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"741\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.755043089389797,60.17655803018598]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"64\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.748514592647552,60.191252095374004]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"731\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.74334865808487,60.19561183870346]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"752\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.750896394252777,60.20959377381747]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"880\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75053697824478,60.20959910421023]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1108\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.750461876392365,60.20979766072243]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"41\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.755874574184418,60.20748353654532]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1109\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.760875552892685,60.21088770123642]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"765\",\"Bands\":[40]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.76441204547882,60.21185245015099]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"28\",\"Bands\":[28]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.761654734611508,60.215059636541]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"755\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75740075111389,60.21638399176534]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"7\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75846827030182,60.22086828237305]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"763\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.760254621505734,60.22131321418651]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"4010\",\"Bands\":[1,7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75917100906372,60.22165956411312]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"47\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.752342104911804,60.221445094013006]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"57\",\"Bands\":[1]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.753144085407254,60.22135850630794]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"777\",\"Bands\":[28]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.752661287784573,60.22139980201119]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"30\",\"Bands\":[42]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75268542766571,60.22124527588704]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1105\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.75236892700195,60.22114936275398]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"1104\",\"Bands\":[3]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.757009148597717,60.22472593347183]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"733\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.762024879455566,60.225682283654024]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"734\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.784587621688843,60.22320344100883]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"36\",\"Bands\":[1,7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.81131851673126,60.22430502399244]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"852\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.807858467102047,60.217489800725495]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"768\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.812761545181274,60.2174631551649]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"770\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813212156295776,60.2150742926762]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"38\",\"Bands\":[38]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813963174819946,60.21095566099787]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"52\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813984632492065,60.21068382110713]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"75\",\"Bands\":[40]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.81358766555786,60.21047594202344]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"771\",\"Bands\":[40]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.813501834869385,60.210358676318094]}},{\"type\":\"Feature\",\"properties\":{\"id\":\"855\",\"Bands\":[7]},\"geometry\":{\"type\":\"Point\",\"coordinates\":[24.679713249206543,60.217276635634605]}}]}");
 
 /***/ }),
 

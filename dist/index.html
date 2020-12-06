@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
-    //
+
 
     <link href="resources/stylesheets/base.css" rel="stylesheet">
+    <link href="resources/stylesheets/navDrawer.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600&amp;display=swap" rel="stylesheet">
     <title>Map View Example</title>
     <style>
@@ -17,8 +19,70 @@
 
 <body>
     <script src="three.min.js"></script>
-    <canvas id="mapCanvas"></canvas>
+    <aside>
+        <div id="towerId">Tower - id 6969 </div>
+        <div id="switchButtons" class="switch box">
+            <div class="toggle toggle1">Specs</div>
+            <div class="toggle toggle2">Log</div>
+        </div>
+        <div id="div3">
+            <div id="div4">
+                <div id="liveData" class="textBase">Live Data <span class="dot"></span></div>
+                <div id="cellTowerSpec" class="textBase">Cell Tower specifications</div>
+            </div>
+            <div class="box textBase" id="advancedButton">Advanced</div>
+        </div>
+        <div id="specBox" class="box">
+            <ul class="asideList textBase spec1 listText">
+                <li>Status</li>
+                <li>Cell Identifier</li>
+                <li>System Subtype</li>
+                <li>PCI</li>
+                <li>Bandwith</li>
+                <li>EARFCN</li>
+                <li>Maximum Signal (RSRP)</li>
+                <li>Direction</li>
+                <li>LTE MIMO</li>
+                <li>First Seen</li>
+                <li>Last Seen</li>
+                <li>Uplink Frequency</li>
+                <li>Downlink Frequency</li>
+                <li>Frequency Band</li>
+            </ul>
+            <ul class="asideList textBase spec2 listText">
+                <li id="status">Online</li>
+                <li>189953</li>
+                <li>LTE</li>
+                <li>117 (39/7)</li>
+                <li>10 MHz</li>
+                <li>3400</li>
+                <li>-85 dBm</li>
+                <li>SW (212°)</li>
+                <li>2x2</li>
+                <li>Tue, May 2, 2017</li>
+                <li>Fri, May 5, 2017</li>
+                <li>2565 MHz</li>
+                <li>2685 MHz</li>
+                <li>IMT-E (B7 FDD)</li>
+            </ul>
+        </div>
+    </aside>
+    <section>
+        <input type="checkbox" id="myInput">
+        <label for="myInput">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+        </label>
+
+        <div class="content">
+            <canvas id="mapCanvas"></canvas>
+        </div>
+    </section>
+
     <div id="copyrightNotice"></div>
+
+
 
 <script src="mapview.bundle.js"></script></body>
 

@@ -1,87 +1,265 @@
-/* reset */
-* {
+body,
+html {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+aside {
+  background-color: #1B1B21;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  z-index: 1;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
 
 label {
-  cursor: pointer; }
-  label:focus {
-    outline: none; }
+  display: inline-block;
+  padding: 7px 10px;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 10px;
+  z-index: 3;
+  position: fixed;
+}
 
-.menu {
-  position: absolute;
+.bar {
+  display: block;
+  background-color: #C85720;
+  width: 30px;
+  height: 3px;
+  border-radius: 5px;
+  margin: 5px auto;
+  transition: background-color .5s ease-in, transform .5s ease-in, width .5s ease-in;
+}
+
+.content {
   top: 0;
+  bottom: 0;
+  position: absolute;
+  right: 0;
   left: 0;
-  background: #fff;
-  width: 240px;
+  background-color: #1B1B21;
+  z-index: 2;
+  transition: transform .5s ease-in-out;
+}
+
+h1 {
+  margin: 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 40px;
+}
+
+.textBase {
+  color: #f2f2f2;
+  font-family: 'Oswald',
+    'Arial Narrow',
+    Arial,
+    sans-serif;
+  text-align: left;
+}
+
+#towerId {
+  margin: 10px;
+  position: relative;
+  left: 0;
+  right: 0;
+  text-align: right;
+  font-size: 1.8em;
+  color: #f2f2f2;
+  font-family: 'Fira Code', 'Arial Narrow', Arial, sans-serif;
+}
+
+#status {
+  color: #06C85C;
+}
+
+.switch {
+  border: none !important;
+  font-weight: 500;
+  font-size: 1em;
+  display: flex;
+  color: #f2f2f2;
+
+}
+
+.toggle {
+  text-align: center;
+  width: 50%;
+  border-radius: 15px;
   height: 100%;
-  transform: translate3d(-240px, 0, 0);
-  transition: transform 0.35s; }
-  .menu label.menu-toggle {
-    position: absolute;
-    right: -60px;
-    width: 60px;
-    height: 60px;
-    line-height: 0px;
-    display: block;
-    padding: 0;
-    text-indent: -9999px;
-    background: #fff url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png) 50% 50%/25px 25px no-repeat; }
-  .menu ul li > label {
-    background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png) 95% 50%/16px 16px no-repeat; }
-  .menu ul li a, .menu ul li label {
-    display: block;
-    text-align: center;
-    padding: 0 20px;
-    line-height: 60px;
-    text-decoration: none;
-    color: #000; }
-    .menu ul li a:hover, .menu ul li label:hover {
-      color: #666; }
+  padding: 8px 0;
+}
 
-/* hide inputs */
-.menu-checkbox {
-  display: none; }
+.toggle1 {
+  background-color: #f2f2f27e;
+}
 
-/* hide navigation icon for sublabels */
-.menu .menu label.menu-toggle {
-  background: none; }
+.toggle2 {}
 
-/* fade in checked menu */
-.menu-checkbox:checked + .menu {
-  transform: translate3d(0, 0, 0); }
+#liveData {
+  color: #f2f2f27e;
+}
 
-/* for show */
-html, body {
-  height: 100%; }
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #06C85C;
+  border-radius: 50%;
+  display: inline-block;
+}
 
-p {
-  margin-bottom: 15px; }
+ul {
+  padding-left: 25px;
+}
 
-#info {
-  display: table;
-  background: rgba(0, 0, 0, 0.4);
+li {
+  font-size: 1.3em;
+  padding: 0px 0;
+  text-align: left;
+}
+
+.spec2 {
+  color: #C85720;
+  width: 40%;
+}
+
+.spec1 {
+  width: 60%;
+}
+
+.box {
+  border: 2px solid #C85720;
+  border-radius: 15px;
+  margin: 20px;
+  background-color: #2A2727;
+}
+
+#advancedButton {
+  width: 50%;
+  padding: 5px 15px;
+  font-weight: 500;
+  font-size: 1.3em;
+  text-align: center;
+  margin: 0;
+}
+
+#div3 {
+  display: flex;
+  margin: 20px;
+  border-top: 2px solid rgba(242, 242, 242, 0.123);
+  padding-top: 10px;
+}
+
+#div4 {
+  width: 50%;
+}
+
+#specBox {
+
+
+  display: flex;
+}
+
+.asideList {
+  list-style: none;
+  width: 50%;
+}
+
+.asideAnchor {
+  border-bottom: 2px solid rgba(255, 255, 255, .7);
+  padding: 20px 0;
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+  transition: color .3s .15s ease-in;
+}
+
+.asideAnchor::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
   height: 100%;
-  width: 100%; }
-  #info #info-content {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    text-transform: uppercase;
-    color: #fff;
-    font-size: 12px; }
-    #info #info-content h1 {
-      color: #fff;
-      border: 3px solid #fff;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.1);
-      font-size: 22px;
-      font-weight: normal;
-      padding: 20px;
-      margin: 10px;
-      display: inline-block; }
-      #info #info-content h1 strong {
-        display: block;
-        font-size: 26px; }
+  background-color: #fff;
+  width: 0;
+  transition: width .3s ease-in;
+  z-index: -1;
+}
 
-/*# sourceMappingURL=navDrawer.css.map */
+.asideAnchor:hover {
+  color: #1B1B21;
+}
+
+.asideAnchor:hover::after {
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked~.content {
+  transform: translateX(500px);
+}
+
+input[type="checkbox"]:checked~label .bar {
+  background-color: #fff;
+}
+
+input[type="checkbox"]:checked~label .top {
+  -webkit-transform: translateY(0px) rotateZ(45deg);
+  -moz-transform: translateY(0px) rotateZ(45deg);
+  -ms-transform: translateY(0px) rotateZ(45deg);
+  -o-transform: translateY(0px) rotateZ(45deg);
+  transform: translateY(0px) rotateZ(45deg);
+}
+
+input[type="checkbox"]:checked~label .bottom {
+  -webkit-transform: translateY(-15px) rotateZ(-45deg);
+  -moz-transform: translateY(-15px) rotateZ(-45deg);
+  -ms-transform: translateY(-15px) rotateZ(-45deg);
+  -o-transform: translateY(-15px) rotateZ(-45deg);
+  transform: translateY(-15px) rotateZ(-45deg);
+}
+
+input[type="checkbox"]:checked~label .middle {
+  width: 0;
+}
+
+.middle {
+  margin: 0 auto;
+}
+
+.ua {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  color: #0799d3;
+  font-size: 2em;
+  z-index: 2;
+}
