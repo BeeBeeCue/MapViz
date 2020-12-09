@@ -25,16 +25,21 @@
   <h3 align="center">MapViz</h3>
 
   <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/BeeBeeCue/MapViz/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/BeeBeeCue/MapViz">View Demo</a>
-    ·
-    <a href="https://github.com/BeeBeeCue/MapViz/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/BeeBeeCue/MapViz/issues">Request Feature</a>
+  MapViz was created as an innovation project in my Innovation Project course at <a href="https://metropolia.fi">Metropolia UAS</a>. <br />
+  The aim was to create a fake start-up with the app idea and create the business case as well. <br />
+  The business case was done by <br />
+  <a href="https://www.linkedin.com/in/neea-buri-206a29170/">Neea Buri</a> <br />
+  <a href="https://www.linkedin.com/in/neea-oja-0bb82317a/">Neea Oja</a> <br />
+  <a href="https://www.linkedin.com/in/alena-tikhonova-9b294b17/">Alena Tikhonova</a> 
+  <br />
+  <br />
+  </p>
+  <p align="center">
+  <a href="https://github.com/BeeBeeCue/MapViz">View Demo</a>
+  ·
+  <a href="https://github.com/BeeBeeCue/MapViz/issues">Report Bug</a>
+  ·
+  <a href="https://github.com/BeeBeeCue/MapViz/issues">Request Feature</a>
   </p>
 </p>
 
