@@ -19,57 +19,84 @@
 
 <body>
     <script src="three.min.js"></script>
-    <aside>
-        <div id="towerId">Tower - id 6969 </div>
-        <div id="switchButtons" class="switch box">
-            <div class="toggle toggle1">Specs</div>
-            <div class="toggle toggle2">Log</div>
-        </div>
-        <div id="div3">
-            <div id="div4">
-                <div id="liveData" class="textBase">Live Data <span class="dot"></span></div>
-                <div id="cellTowerSpec" class="textBase">Cell Tower specifications</div>
+
+    <aside id="nav">
+        <div id="advanced">
+            <div class="header advancedHeader">Advanced View</div>
+            <div class="box" id="dashboard">
+                <div id="topRow" class="dashBox">
+                    <div class="box2 dash1">
+                        <div class="title">Status</div>
+                        <div class="dashText status">Online</div>
+                    </div>
+                    <div class="box2 dash1">
+                        <div class="title">Status</div>
+                        <div class="dashText status">Online</div>
+                    </div>
+                    <div class="box2 dash1">
+                        <div class="title">Status</div>
+                        <div class="dashText status">Online</div>
+                    </div>
+
+
+                </div>
+                <div class="box2 dash2 dashBox">4</div>
+                <div class="box2 dash2 dashBox">5</div>
             </div>
-            <div class="box textBase" id="advancedButton">Advanced</div>
         </div>
-        <div id="specBox" class="box">
-            <ul class="asideList textBase spec1 listText">
-                <li>Status</li>
-                <li>Cell Identifier</li>
-                <li>System Subtype</li>
-                <li>PCI</li>
-                <li>Bandwith</li>
-                <li>EARFCN</li>
-                <li>Maximum Signal (RSRP)</li>
-                <li>Direction</li>
-                <li>LTE MIMO</li>
-                <li>First Seen</li>
-                <li>Last Seen</li>
-                <li>Uplink Frequency</li>
-                <li>Downlink Frequency</li>
-                <li>Frequency Band</li>
-            </ul>
-            <ul class="asideList textBase spec2 listText">
-                <li id="status">Online</li>
-                <li>189953</li>
-                <li>LTE</li>
-                <li>117 (39/7)</li>
-                <li>10 MHz</li>
-                <li>3400</li>
-                <li>-85 dBm</li>
-                <li>SW (212°)</li>
-                <li>2x2</li>
-                <li>Tue, May 2, 2017</li>
-                <li>Fri, May 5, 2017</li>
-                <li>2565 MHz</li>
-                <li>2685 MHz</li>
-                <li>IMT-E (B7 FDD)</li>
-            </ul>
+        <div id="basic">
+            <div id="towerId" class="header">Tower - id 6969 </div>
+            <div id="switchButtons" class="switch box">
+                <div class="toggle toggle1">Specs</div>
+                <div class="toggle toggle2">Log</div>
+            </div>
+            <div id="div3">
+                <div id="div4">
+                    <div id="liveData" class="textBase">Live Data <span class="dot"></span></div>
+                    <div id="cellTowerSpec" class="textBase">Cell Tower specifications</div>
+                </div>
+                <button class="box textBase" id="advancedButton">Advanced</button>
+            </div>
+            <div id="specBox" class="box">
+                <ul class="asideList textBase spec1 listText">
+                    <li>Status</li>
+                    <li>Cell Identifier</li>
+                    <li>System Subtype</li>
+                    <li>PCI</li>
+                    <li>Bandwith</li>
+                    <li>EARFCN</li>
+                    <li>Maximum Signal (RSRP)</li>
+                    <li>Direction</li>
+                    <li>LTE MIMO</li>
+                    <li>First Seen</li>
+                    <li>Last Seen</li>
+                    <li>Uplink Frequency</li>
+                    <li>Downlink Frequency</li>
+                    <li>Frequency Band</li>
+                </ul>
+                <ul class="asideList textBase spec2 listText">
+                    <li class="status">Online</li>
+                    <li>189953</li>
+                    <li>LTE</li>
+                    <li>117 (39/7)</li>
+                    <li>10 MHz</li>
+                    <li>3400</li>
+                    <li>-85 dBm</li>
+                    <li>SW (212°)</li>
+                    <li>2x2</li>
+                    <li>Tue, May 2, 2017</li>
+                    <li>Fri, May 5, 2017</li>
+                    <li>2565 MHz</li>
+                    <li>2685 MHz</li>
+                    <li>IMT-E (B7 FDD)</li>
+                </ul>
+            </div>
         </div>
+
     </aside>
     <section>
         <input type="checkbox" id="myInput">
-        <label for="myInput">
+        <label for="myInput" id="hamburger">
             <span class="bar top"></span>
             <span class="bar middle"></span>
             <span class="bar bottom"></span>
@@ -85,5 +112,7 @@
 
 
 </body>
+
+<script src="resources/scripts/buttons.js"></script>
 
 </html>
