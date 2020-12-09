@@ -71,7 +71,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://mapviz.netlify.app)
+[![Product Name Screen Shot][product-screenshot]](mapviz.netlify.app)
 
 
 ### Built With
@@ -135,7 +135,8 @@ Project Link: [https://github.com/BeeBeeCue/MapViz](https://github.com/BeeBeeCue
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* Thanks to [geonhuiy](https://github.com/geonhuiy) for big help
+* [Geonhuiy](https://github.com/geonhuiy)
+* [Img Shields](https://shields.io)
 
 
 
@@ -156,3 +157,4 @@ Project Link: [https://github.com/BeeBeeCue/MapViz](https://github.com/BeeBeeCue
 [license-url]: https://github.com/BeeBeeCue/MapViz/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/k-knutsen
+[product-screenshot]: images/MapViz.png
