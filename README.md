@@ -135,9 +135,8 @@ Project Link: [https://github.com/BeeBeeCue/MapViz](https://github.com/BeeBeeCue
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
+* Thanks to [geonhuiy](https://github.com/geonhuiy) for big help
+
 
 
 
