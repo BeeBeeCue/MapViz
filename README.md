@@ -35,7 +35,7 @@
   <br />
   </p>
   <p align="center">
-  <a href="https://github.com/BeeBeeCue/MapViz">View Demo</a>
+  <a href="https://mapviz.netlify.app/">View Demo</a>
   ·
   <a href="https://github.com/BeeBeeCue/MapViz/issues">Report Bug</a>
   ·
